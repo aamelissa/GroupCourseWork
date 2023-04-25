@@ -14,7 +14,7 @@ try {
 $nhs = $_GET['nhs'];
 
 // Query the database to get user details
-$query = "SELECT patientForename as fname, patientSurname as sname, patientEmail as email, patientPostcode as post FROM LocalPatient WHERE NHSNumber=:nhs";
+$query = "SELECT DoseNo as DoseNum, VaccinationDate as vaccinationDate, VaccineManufacturer as vaccineManufacturer, DiseaseTargeted as diseaseTargeted, VaccineType as vaccineType, Product as product, VaccineBatchNumber as vaccineBatchNumber, CountryOfVaccination as countryOfVaccination, Authority as authority, TotalSeriesOfDoses as totalSeriesOfDoses, DisplayName as displayName, SnomedCode as snomedCode, ProcedureCode as procedureCode, Booster as booster, DateEntered as dateEntered FROM MedicalRecords WHERE NHSNumber=:nhs";
 $stmt = $db->prepare($query);
 $stmt->bindParam(':nhs', $nhs);
 $stmt->execute();

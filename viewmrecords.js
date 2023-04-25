@@ -1,7 +1,7 @@
-import {Button, Label, Page,Footer,Input, LabelText,Link, Table,headers } from "govuk-react";
+import {Button, Page,Footer, LabelText,Link, Table} from "govuk-react";
 import React, { useState,useEffect } from 'react';
 import { useLocation } from "react-router-dom";
-import axios from 'axios';
+import $ from 'jquery';
 
 function ViewMR(props) {
   const [data, setData] = useState(null);
@@ -11,15 +11,17 @@ function ViewMR(props) {
 
   useEffect(() => {
     // Make an API call to fetch the user details
-    axios.get(`http://localhost:4000/med.php?nhs=${nhs}`)
-      .then((response) => {
-        console.log("Server response: ",response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+    $.ajax({
+        url: `http://localhost:4000/med.php?nhs=${nhs}`,
+        method: "GET",
+        dataType: "json",
+        success: (response) => {
+          console.log("Server response: ",response);
+          setData(response);
+        },
+        error: (error) => console.log(error)
       });
-  }, [nhs]);
+    }, [nhs]);
 
   if (!data) {
     return (
@@ -35,25 +37,67 @@ function ViewMR(props) {
    <br/>
    <br/>
       <div>
-        <h1>Welcome to the Homepage</h1>
-        <p>This is the homepage content after a successful login.</p>
         <p>Your NHS number is: {nhs}</p>
         <Table>
           <Table.Row>
-            <Table.CellHeader>FName</Table.CellHeader>
-            <Table.Cell>{data.fname}</Table.Cell>
+            <Table.CellHeader>DoseNum</Table.CellHeader>
+            <Table.Cell>{data.DoseNo}</Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.CellHeader>SName</Table.CellHeader>
-            <Table.Cell>{data.sname}</Table.Cell>
+            <Table.CellHeader>vaccinationDate</Table.CellHeader>
+            <Table.Cell>{data.VaccinationDate}</Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.CellHeader>Email</Table.CellHeader>
-            <Table.Cell>{data.email}</Table.Cell>
+            <Table.CellHeader>vaccineManufacturer</Table.CellHeader>
+            <Table.Cell>{data.VaccineManufacturer}</Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.CellHeader>PostCode</Table.CellHeader>
-            <Table.Cell>{data.post}</Table.Cell>
+            <Table.CellHeader>diseaseTargeted</Table.CellHeader>
+            <Table.Cell>{data.DiseaseTargeted}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>vaccineType</Table.CellHeader>
+            <Table.Cell>{data.VaccineType}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>product</Table.CellHeader>
+            <Table.Cell>{data.Product}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>vaccineBatchNumber</Table.CellHeader>
+            <Table.Cell>{data.VaccineBatchNumber}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>countryOfVaccination</Table.CellHeader>
+            <Table.Cell>{data.CountryOfVaccination}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>authority</Table.CellHeader>
+            <Table.Cell>{data.Authority}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>totalSeriesOfDoses</Table.CellHeader>
+            <Table.Cell>{data.TotalSeriesOfDoses}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>displayName</Table.CellHeader>
+            <Table.Cell>{data.DisplayName}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>snomedCode</Table.CellHeader>
+            <Table.Cell>{data.SnomedCode}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>dateEntered</Table.CellHeader>
+            <Table.Cell>{data.DateEntered}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>procedureCode</Table.CellHeader>
+            <Table.Cell>{data.ProcedureCode}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>booster</Table.CellHeader>
+            <Table.Cell>{data.Booster}</Table.Cell>
           </Table.Row>
         </Table>
       </div>
