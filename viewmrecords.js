@@ -38,69 +38,77 @@ function ViewMR(props) {
    <br/>
       <div>
         <p>Your NHS number is: {nhs}</p>
+        {
+        data.map(record => (
+        <div key={record.vaccinationDate}>
+          <br />
+          <h2>Vaccination Date: {record.vaccinationDate}</h2>
         <Table>
           <Table.Row>
             <Table.CellHeader>DoseNum</Table.CellHeader>
-            <Table.Cell>{data.DoseNo}</Table.Cell>
+            <Table.Cell>{record.DoseNum}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>vaccinationDate</Table.CellHeader>
-            <Table.Cell>{data.VaccinationDate}</Table.Cell>
+            <Table.Cell>{record.vaccinationDate}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>vaccineManufacturer</Table.CellHeader>
-            <Table.Cell>{data.VaccineManufacturer}</Table.Cell>
+            <Table.Cell>{record.vaccineManufacturer}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>diseaseTargeted</Table.CellHeader>
-            <Table.Cell>{data.DiseaseTargeted}</Table.Cell>
+            <Table.Cell>{record.diseaseTargeted}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>vaccineType</Table.CellHeader>
-            <Table.Cell>{data.VaccineType}</Table.Cell>
+            <Table.Cell>{record.vaccineType}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>product</Table.CellHeader>
-            <Table.Cell>{data.Product}</Table.Cell>
+            <Table.Cell>{record.product}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>vaccineBatchNumber</Table.CellHeader>
-            <Table.Cell>{data.VaccineBatchNumber}</Table.Cell>
+            <Table.Cell>{record.vaccineBatchNumber}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>countryOfVaccination</Table.CellHeader>
-            <Table.Cell>{data.CountryOfVaccination}</Table.Cell>
+            <Table.Cell>{record.countryOfVaccination}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>authority</Table.CellHeader>
-            <Table.Cell>{data.Authority}</Table.Cell>
+            <Table.Cell>{record.authority}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>totalSeriesOfDoses</Table.CellHeader>
-            <Table.Cell>{data.TotalSeriesOfDoses}</Table.Cell>
+            <Table.Cell>{record.totalSeriesOfDoses}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>displayName</Table.CellHeader>
-            <Table.Cell>{data.DisplayName}</Table.Cell>
+            <Table.Cell>{record.displayName}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>snomedCode</Table.CellHeader>
-            <Table.Cell>{data.SnomedCode}</Table.Cell>
+            <Table.Cell>{record.snomedCode}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>dateEntered</Table.CellHeader>
-            <Table.Cell>{data.DateEntered}</Table.Cell>
+            <Table.Cell>{record.dateEntered}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>procedureCode</Table.CellHeader>
-            <Table.Cell>{data.ProcedureCode}</Table.Cell>
+            <Table.Cell>{record.procedureCode}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>booster</Table.CellHeader>
-            <Table.Cell>{data.Booster}</Table.Cell>
+            <Table.Cell>{record.booster}</Table.Cell>
           </Table.Row>
         </Table>
       </div>
+        ))
+}
+</div>
     <br/>
     <br/>
     <br/>
