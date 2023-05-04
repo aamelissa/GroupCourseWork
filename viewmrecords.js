@@ -1,18 +1,22 @@
+// Melissa Akinci
+// Line 46 - 50 Fareed Khan
+
+
 import {Button, Page,Footer, LabelText,Link, Table} from "govuk-react";
 import React, { useState,useEffect } from 'react';
-import { useLocation } from "react-router-dom";
 import $ from 'jquery';
 
 function ViewMR(props) {
-  const [data, setData] = useState(null);
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const nhs = searchParams.get("nhs");
+  const [data, setData] = useState('');
+  const[auth,setAuth] = useState('');
 
   useEffect(() => {
+   var auth = sessionStorage.getItem('nhs');
+   setAuth(auth);
+
     // Make an API call to fetch the user details
     $.ajax({
-        url: `http://localhost:4000/med.php?nhs=${nhs}`,
+        url: `http://localhost:4000/med.php?nhs=${auth}`,
         method: "GET",
         dataType: "json",
         success: (response) => {
@@ -21,7 +25,7 @@ function ViewMR(props) {
         },
         error: (error) => console.log(error)
       });
-    }, [nhs]);
+    }, [auth]);
 
   if (!data) {
     return (
@@ -37,13 +41,13 @@ function ViewMR(props) {
    <br/>
    <br/>
       <div>
-        <p>Your NHS number is: {nhs}</p>
-        {
+        <p>Your NHS number is: {auth}</p>
+       {
         data.map(record => (
-        <div key={record.vaccinationDate}>
-          <br />
-          <h2>Vaccination Date: {record.vaccinationDate}</h2>
-        <Table>
+           <div key={record.vaccinationDate}>
+            <br/>
+            <h2>Vaccination Date: {record.vaccinationDate}</h2>
+            <Table>
           <Table.Row>
             <Table.CellHeader>DoseNum</Table.CellHeader>
             <Table.Cell>{record.DoseNum}</Table.Cell>
@@ -104,10 +108,10 @@ function ViewMR(props) {
             <Table.CellHeader>booster</Table.CellHeader>
             <Table.Cell>{record.booster}</Table.Cell>
           </Table.Row>
-        </Table>
-      </div>
+          </Table>
+           </div>
         ))
-}
+       }
 </div>
     <br/>
     <br/>
@@ -119,7 +123,7 @@ function ViewMR(props) {
       </div>
       </center>
       </Link>
-    <div className="footer">
+    <div className="footer_2">
       <Footer 
   copyright={{
     image: {
