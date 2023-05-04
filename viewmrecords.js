@@ -1,5 +1,5 @@
-// Melissa Akinci
-// Line 46 - 50 Fareed Khan Mohamed Rafi 
+// Melissa Akinci did this page
+// Line 46 - 50 was done by Fareed Khan Mohamed Rafi 
 
 
 import {Button, Page,Footer, LabelText,Link, Table} from "govuk-react";
